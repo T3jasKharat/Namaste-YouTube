@@ -3,11 +3,38 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Body from './components/Body'
+import MainContainer from './components/MainContainer'
+import WatchPage from './components/WatchPage'
+import SearchResultsPage from './components/SearchResultsPage'
+
+const appRouter = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    children: [
+      {
+        path: '/',
+        element: <MainContainer />
+      },
+      {
+        path: '/watch',
+        element: <WatchPage />
+      },
+      {
+        path: '/results',
+        element: <SearchResultsPage />
+      }
+    ]
+  }
+]);
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={appRouter} />
   </React.StrictMode>
 );
 
